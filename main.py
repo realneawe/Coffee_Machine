@@ -70,7 +70,7 @@ def remainder_cappuccino():
     remainder_source[2] -= int(MENU["cappuccino"]["ingredients"]["coffee"])
     return remainder_source
 
-# todo: malzeme bittiğinde kodu ona göre çıktı verdirelim...
+# todo: malzeme bittiğinde kodu ona göre çıktı verdirelim...Versiyon 2'de bunu yapacağım...
 end = True
 while end:
     end = False
