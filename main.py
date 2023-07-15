@@ -70,7 +70,7 @@ def remainder_cappuccino():
     remainder_source[2] -= int(MENU["cappuccino"]["ingredients"]["coffee"])
     return remainder_source
 
-# todo: malzeme bittiğinde kodu ona göre çıktı verdirelim...Versiyon 2'de bunu yapacağım...
+# todo: Malzeme tükendiğinde kodu ona göre çıktı verdirip uyarı ile kodu bitirilecek...Versiyon 2'de bunu yapacağım...
 end = True
 while end:
     end = False
@@ -151,13 +151,12 @@ while end:
         wallet = 0
         end_check = input("\nDo you want another coffee?\nYes(y) or No(n);\n").lower()
         if end_check == "yes" or end_check == "y":
-            print(f"Remaining water in machine; {remainder_source[0]}ml\n"
-                  f"Remaining milk in machine; {remainder_source[1]}ml\n"
-                  f"Remaining coffee in machine; {remainder_source[2]}gr")
+            # print(f"Remaining water in machine; {remainder_source[0]}ml\n"
+            #       f"Remaining milk in machine; {remainder_source[1]}ml\n"
+            #       f"Remaining coffee in machine; {remainder_source[2]}gr")
             end = True
         elif end_check == "no" or end_check == "n":
             print("Thanks for paying! Enjoy for drink.")
         else:
             print("\nWrong input!\nTry again, check your answer please!\n")
             end_choose_check = True
-print("hello world!")
