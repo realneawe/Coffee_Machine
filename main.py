@@ -35,7 +35,7 @@ resources = {
     "coffee": 1000,
 }
 wallet = 0
-remainder_source = [5000, 2000, 1000]
+remainder_source = [1000, 500, 100]
 
 def iron_cash():
     global wallet
@@ -70,14 +70,13 @@ def remainder_cappuccino():
     remainder_source[2] -= int(MENU["cappuccino"]["ingredients"]["coffee"])
     return remainder_source
 
-# todo: Malzeme tükendiğinde kodu ona göre çıktı verdirip uyarı ile kodu bitirilecek...Versiyon 2'de bunu yapacağım...
 end = True
 while end:
     end = False
     choose_check = True
     while choose_check:
         choose_check = False
-        choose = input("You choose the coffee ('Espresso(e)', 'Latte(l)', 'Cappuccino(c)') in machine; ").lower()
+        choose = input("You choose the coffee ('Espresso(E/e)', 'Latte(L/l)', 'Cappuccino(C/c)') in machine; ").lower()
 
         if choose == "report":
             print(f"Remaining water in machine; {remainder_source[0]}ml\n"
@@ -105,7 +104,7 @@ while end:
                               f"Don't forget to take your change :D")
                         remainder_espresso()
             elif choose == "latte" or choose == "l":
-                print(f"Your choose is Espresso, this coffe cost is {MENU['latte']['cost']}$")
+                print(f"Your choose is Latte, this coffe cost is {MENU['latte']['cost']}$")
                 print(iron_cash())
                 result_cash = wallet - float(MENU['latte']['cost'])
                 if result_cash == 0:
@@ -124,7 +123,7 @@ while end:
                               f"Don't forget to take your change :D")
                         remainder_latte()
             elif choose == "cappuccino" or choose == "c":
-                print(f"Your choose is Espresso, this coffe cost is {MENU['cappuccino']['cost']}$")
+                print(f"Your choose is Cappuccino, this coffe cost is {MENU['cappuccino']['cost']}$")
                 print(iron_cash())
                 result_cash = wallet - float(MENU['cappuccino']['cost'])
                 if result_cash == 0:
@@ -151,12 +150,20 @@ while end:
         wallet = 0
         end_check = input("\nDo you want another coffee?\nYes(y) or No(n);\n").lower()
         if end_check == "yes" or end_check == "y":
-            # print(f"Remaining water in machine; {remainder_source[0]}ml\n"
-            #       f"Remaining milk in machine; {remainder_source[1]}ml\n"
-            #       f"Remaining coffee in machine; {remainder_source[2]}gr")
-            end = True
+            if remainder_source[0] <= 0:
+                print(f"Sorry, machine not have water; {remainder_source[0]}ml")
+            elif remainder_source[1] <= 0:
+                print(f"Sorry, machine not have milk; {remainder_source[1]}ml")
+            elif remainder_source[2] <= 0:
+                print(f"Sorry, machine not have milk; {remainder_source[2]}gr")
+            else:
+                end = True
         elif end_check == "no" or end_check == "n":
             print("Thanks for paying! Enjoy for drink.")
         else:
             print("\nWrong input!\nTry again, check your answer please!\n")
             end_choose_check = True
+
+# todo: malzeme bittiğinde kod duruyor ama malzeme - ye düşüyor bunu engellemem lazım.
+# todo: birden fazla malzeme biterse onunda bilgisini göstermem gerek
+# todo: malzeme bittiğinde direkt kodu bitirmeden önce kalan malzeme bilgisini göstermek te mantıklı olabilir
